@@ -21,21 +21,26 @@ export let App = () => {
     e.target.innerHTML = val;
   };
 
-  let Beers = () => {
+  let LiComp = ({ name, tag, funct }) => {
     return (
-      <>
-        <button onClick={fetchData}>Fetch Data</button>
-        <ul>
-          {beers.map((beer, i) => (
-            <li key={i}>name={beer.name} tagLine={beer.tagline}
-              <button onClick={toogleLike}>Like Me</button>
-            </li>
-          ))}
-        </ul>
-      </>
+      <li >name={name} tagLine={tag}
+        <button onClick={funct}>Like Me</button>
+      </li>
+
     )
   };
 
-  return (<Beers />);
+  return (
+    <>
+      <button onClick={fetchData}>Fetch Data</button>
+      <hr />
+      <ul>
+        {beers.map((beer, i) => (
+          <LiComp key={i} name={beer.name} tag={beer.tagline} funct={toogleLike} />
+        ))}
+      </ul>
+    </>
+
+  );
 };
 
